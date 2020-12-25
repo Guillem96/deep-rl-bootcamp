@@ -1,0 +1,6 @@
+# VIM editor
+*.swp
+
+# Python
+*.pyc
+__pycache__/
