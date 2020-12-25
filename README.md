@@ -1,4 +1,4 @@
-# Deep Reinforcement Learning Bootcamp í´–
+# Deep Reinforcement Learning Bootcamp ðŸ¤–
 
 This repository provides the solutions for the labs carried out at the [Deep RL
 bootcamp](https://sites.google.com/view/deep-rl-bootcamp/lectures).
