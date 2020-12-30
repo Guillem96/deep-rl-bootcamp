@@ -1,4 +1,0 @@
-{"Iteration": 0, "Steps": 1019999, "Epsilon": 0.050000000000000044, "Episodes": 7, "AverageReturn": -14.142857142857142, "AverageDiscountedReturn": -0.4036368848818799, "TDError^2": 0.009735319763422012}
-{"Iteration": 1, "Steps": 1029999, "Epsilon": 0.050000000000000044, "Episodes": 10, "AverageReturn": -14.1, "AverageDiscountedReturn": -0.3838424294317866, "TDError^2": 0.008535470813512802}
-{"Iteration": 2, "Steps": 1039999, "Epsilon": 0.050000000000000044, "Episodes": 14, "AverageReturn": -14.8, "AverageDiscountedReturn": -0.23831315439173947, "TDError^2": 0.006576039362698793}
-{"Iteration": 3, "Steps": 1049999, "Epsilon": 0.050000000000000044, "Episodes": 19, "AverageReturn": -16.1, "AverageDiscountedReturn": -0.24350397253874512, "TDError^2": 0.005273045506328344}
