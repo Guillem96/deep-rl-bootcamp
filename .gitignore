@@ -10,3 +10,4 @@ __pycache__/
 
 # Resulting data from experiments
 data/
+*.pkl
