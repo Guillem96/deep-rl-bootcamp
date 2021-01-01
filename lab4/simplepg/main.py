@@ -116,9 +116,13 @@ def cartpole_get_grad_logp_action(theta, ob, action):
     :param action: An integer
     :return: A matrix of size |A| * (|S|+1)
     """
-    grad = np.zeros_like(theta)
-    "*** YOUR CODE HERE ***"
-    return grad
+    a = np.zeros(theta.shape[0])
+    a[action] = 1
+
+    ob_1 = include_bias(ob)
+    prob = softmax(theta.dot(ob_1))
+
+    return np.outer(a - prob, ob_1)
 
 
 def cartpole_get_action(theta, ob, rng=np.random):
@@ -249,9 +253,9 @@ def main(env_id, batch_size, discount, learning_rate, n_itrs, render, use_baseli
                     matrix of size |A| * (|S|+1) )
                     :return: A tuple, consisting of a scalar and a matrix of size |A| * (|S|+1)
                     """
-                    R_t = 0.
-                    pg_theta = np.zeros_like(theta)
-                    "*** YOUR CODE HERE ***"
+                    R_t = discount * R_tplus1 + r_t
+                    theta_grad = get_grad_logp_action(theta, s_t, a_t)
+                    pg_theta = theta_grad * (R_t - b_t)
                     return R_t, pg_theta
 
                 # Test the implementation, but only once
@@ -280,9 +284,13 @@ def main(env_id, batch_size, discount, learning_rate, n_itrs, render, use_baseli
             collected at time step t across different episodes
             :return: A vector of size T
             """
+
             baselines = np.zeros(len(all_returns))
             for t in range(len(all_returns)):
-                "*** YOUR CODE HERE ***"
+                current_returns = all_returns[t]
+                if len(current_returns) > 0:
+                    baselines[t] = np.mean(np.array(current_returns))
+
             return baselines
 
         if use_baseline:
@@ -291,7 +299,7 @@ def main(env_id, batch_size, discount, learning_rate, n_itrs, render, use_baseli
         else:
             baselines = np.zeros(timestep_limit)
 
-        # Roughly normalize the gradient
+            # Roughly normalize the gradient
         grad = grad / (np.linalg.norm(grad) + 1e-8)
 
         if not natural:
@@ -309,8 +317,7 @@ def main(env_id, batch_size, discount, learning_rate, n_itrs, render, use_baseli
                 entries in theta
                 """
                 d = len(theta.flatten())
-                F = np.zeros((d, d))
-                "*** YOUR CODE HERE ***"
+                
                 return F
 
             def compute_natural_gradient(F, grad, reg=1e-4):
